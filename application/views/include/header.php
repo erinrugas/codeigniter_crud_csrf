@@ -10,6 +10,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<base href="<?= base_url(); ?>" />
 	<script type="text/javascript" src="public/jquery/dist/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="public/bootstrap/dist/css/bootstrap.min.css">
+
+  <script>
+      var base_url = window.location.origin+"/ci-code-template/";
+
+  </script>
 <style>
       body {
         padding-top: 54px;

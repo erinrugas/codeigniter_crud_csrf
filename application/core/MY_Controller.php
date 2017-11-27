@@ -8,6 +8,7 @@ class MY_Controller	extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Crud_model');
+        $this->load->helper('custom_helper');
     }
 
     function mainPage($location,$data=array()) 
