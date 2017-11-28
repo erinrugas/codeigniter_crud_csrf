@@ -20,7 +20,7 @@ $config =
 	        	'field'    =>    'email',
 	        	'label'	   =>    'Email',
 	        	'rules'	   =>    'required|is_unique[users.email]|valid_email',
-	        	'errors'   =>    [ 'is_unique' => '%s already taken.', 'valid_email' => 'This must contain a valid %s.' ]
+	        	'errors'   =>    [ 'is_unique' => '%s is already taken.', 'valid_email' => '%s is invalid.' ]
 
 	        ],
 	    ]

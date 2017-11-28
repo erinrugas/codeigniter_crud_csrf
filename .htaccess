@@ -1,6 +1,6 @@
 <IfModule mod_rewrite.c>
 RewriteEngine On
-RewriteBase /ci-code-template/
+RewriteBase /ci_code_template/
 #CI_FOLDER is the Location of your CI files.
 
 #Removes access to the system folder by users.

@@ -9,6 +9,7 @@ class MY_Controller	extends CI_Controller
         parent::__construct();
         $this->load->model('Crud_model');
         $this->load->helper('custom_helper');
+        // $this->load->library('my_session');
     }
 
     function mainPage($location,$data=array()) 

@@ -7,6 +7,9 @@ class Main extends MY_Controller {
 	{
 		/* MY_Controller function mainPage */
 		
-		parent::mainPage('main/index');
+		parent::mainPage('main/index',[
+			'title'	=> 'Codeigniter Crud'
+
+		]);
 	}
 }

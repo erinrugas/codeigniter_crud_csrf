@@ -7,37 +7,66 @@ class Crud extends MY_Controller {
 	{
 		/* MY_Controller function mainPage */
 		
-		parent::mainPage('crud/index');
+		parent::mainPage('crud/index',[
+			'title'	=> 'Crud, AJax'
+		]);
 	}
 
 
 	/* Store Data */
 	public function store() 
 	{
-		$this->form_validation->set_error_delimiters('<div class="is-invalid">', '</div>');
+		// print_r($this->security->get_csrf_hash());die;
+
 		if($this->form_validation->run('crud_validate') == FALSE) {
-			
+
 			$error = [
+				'token'	=> $this->security->get_csrf_hash(),
 				'nameErr'		=> form_error('name') ,
 				'positionErr'   => form_error('position'),
-				'emailErr'		=> form_error('email')
+				'emailErr'		=> form_error('email'),
+				"message"		=> "failed"
 			];	
 			echo json_encode($error);
 			
-		} else {
-
-			/* clean_data found in custom helper */
+		} else {		
+			/* clean_data is for strip_tags */
 			$insertData = [
 				'name'	=>  clean_data($this->input->post('name')),
 				'position' => clean_data($this->input->post('position')),
-				'email' =>  clean_data($this->input->post('email'))
+				'email' =>  clean_data($this->input->post('email')),
 			];
+			
 
 			$this->Crud_model->insert('users',$insertData);
-
-			echo json_encode("success");
-
-
+			$csrf = $this->security->get_csrf_hash();
+			$this->output
+			    ->set_content_type('application/json')
+			    ->set_output(json_encode(array("message" => "success", 'csrf' => $csrf)));
 		}
 	}
+
+	// public function show()
+	// {
+	// 	$order_by = "created_at desc";
+	// 	$usersData = $this->Crud_model->fetch('users','','','',$order_by);
+	// 	// $usersData = array();
+	// 	$data['data']['data'] = array();
+	// 	$id = 0;
+	// 	$row = 0;
+
+	// 	if(!$usersData == null) {
+	// 		foreach($usersData as $userData) {
+	// 			$data['data']['data'][$id][] = $userData->name;
+	// 			$data['data']['data'][$id][] = $userData->position;
+	// 			$data['data']['data'][$id][] = $userData->email;
+	// 			$id++;
+	// 			$row++;
+	// 		}
+	// 		$data['token'] = $this->security->get_csrf_hash();
+		
+	// 	}
+	// 	echo json_encode($data['data']);
+
+	// }
 }
