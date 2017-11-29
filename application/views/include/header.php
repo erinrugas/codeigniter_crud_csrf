@@ -14,7 +14,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <link rel="stylesheet" type="text/css" href="public/font-awesome/css/font-awesome.min.css">
   <script src="public/datatables/jquery.dataTables.min.js" type="text/javascript"></script>
   <script>
-      var base_url = window.location.origin+"/ci_code_template/";
+      var base_url = window.location.origin+"/codeigniter_crud_csrf/";
 
       var CFG = {
               token: '<?php echo $this->security->get_csrf_hash();?>'
