@@ -52,8 +52,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 $route['information']['post'] = 'crud/store';
-$route['information/show']['get'] = 'crud/show';
-
+$route['information']['get'] = 'crud/show';
+$route['update/information'] = 'crud/update';
+$route['delete/information'] = 'crud/delete';
 
 $route['default_controller'] = 'main';
 $route['404_override'] = '';

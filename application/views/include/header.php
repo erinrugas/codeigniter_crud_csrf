@@ -12,24 +12,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <link rel="stylesheet" type="text/css" href="public/bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="public/datatables/jquery.dataTables.min.css">
 
-  <script src="public/datatables/jquery.dataTables.min.js" type="text/javascript" charset="utf-8"></script>
-
+  <script src="public/datatables/jquery.dataTables.min.js" type="text/javascript"></script>
   <script>
       var base_url = window.location.origin+"/ci_code_template/";
 
       var CFG = {
-              url: base_url,
               token: '<?php echo $this->security->get_csrf_hash();?>'
           };
-
-          
-          
           
   </script>
 
 <script type="text/javascript" src="public/js/bootstrap-notify.min.js"></script>
 <script type="text/javascript" src="public/js/notify_helper.js"></script>
-<script src="public/js/custom.js">
+<script src="public/js/custom.js"></script>
+<script src="public/js/create.js"></script>
+<script src="public/js/delete.js"></script>
+<script src="public/js/update.js"></script>
     
 </script>
 <style>

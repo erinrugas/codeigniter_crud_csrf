@@ -12,6 +12,7 @@
             <th>Name</th>
             <th>Position</th>
             <th>Email</th>
+            <th>Action</th>
           </tr>
         </thead>
         
@@ -25,9 +26,10 @@
       <div class="card-body">
             <form method="post" id="add-info-form">
             <input type="hidden" id="token" name="<?= $this->security->get_csrf_token_name() ?>" value="<?= $this->security->get_csrf_hash(); ?>" >
+            <input type="hidden" name="id" id="id">
             <div class="form-group">
               <label for="">Enter Your Name</label>
-              <input type="text" name="name" id="name" class="form-control">
+              <input type="text" name="name" autocomplete="off" id="name" class="form-control">
                <div id="invalid-name" class="invalid-feedback">
                 </div>
             </div>
@@ -36,7 +38,7 @@
             <div class="form-group">
               
               <label for="">Enter Your Position</label>
-              <input type="text" name="position" id="position" class="form-control">
+              <input type="text" name="position" autocomplete="off" id="position" class="form-control">
               <div id="invalid-pos" class="invalid-feedback">
                 
                 </div>
@@ -45,7 +47,7 @@
             <div class="form-group">
               
               <label for="">Enter Email</label>
-              <input type="text" name="email" id="email" class="form-control">
+              <input type="text" name="email" autocomplete="off" id="email" class="form-control">
               <div id="invalid-email" class="invalid-feedback">
                 </div>
             </div>
@@ -60,86 +62,33 @@
   </div>
 </div>
 
-<script>
-    
+<!-- The Modal -->
+<div class="modal fade" id="delete-info">
+  <div class="modal-dialog">
+    <div class="modal-content">
 
-    $(document).ready(function() {
-        $.ajaxSetup({data: {token: CFG.token}});
-        $("#add-info-form").on('submit',function(e) {
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title"></h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
 
-            $.ajax({
-                url: CFG.url + 'information',
-                type: "POST",
-                data: $(this).serialize(),
-                cache: false,
-                async: false,
-                success: function(data) {
-                    var result = JSON.parse(data);
-                    var nameError = result.nameErr;
-                    var positionError = result.positionErr;
-                    var emailError = result.emailErr;
-                    
-                    if(result.message === "success") {
-                       // $.ajaxSetup({data: {token: CFG.token}});
-                        $('input:hidden[name="token"]').val(result.token);
-                        removeClassIsValid('input');
-                        removeClassIsInvalid('input');
-                        scrollTop();
-                        notification('successfully added your data','success','top','right');
-                     
-                        $("input").val('');
-                        // $("#users-info").dataTable().fnDestroy();
-                        // getData();
-                        
-                    }else {
-                        //name
-                        if(nameError == "") { 
-                            $('input:hidden[name="token"]').val(result.token);
-                        
-                            removeClassIsInvalid("#name"); 
-                            addClassIsValid("#name");
-                            $("#invalid-name").html(""); 
+      <!-- Modal body -->
+      <div class="modal-body">
+        <h5 id="confirmation"></h5>
+          <form id="delete-form" method="post">
+              <input type="hidden" name="token" id="dtoken">
+              <input type="hidden" name="deleteid" id="deleteid">
+      </div>
 
-                        } else { 
-                            $('input:hidden[name="token"]').val(result.token);
-                            addClassIsInvalid("#name");
-                            $("#invalid-name").html(nameError);
+      <!-- Modal footer -->
+      <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Yes</button>
+          </form>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
 
-                        } 
+    </div>
+  </div>
+</div>
 
-                        //email
-                        if(emailError == "") { 
-                           $('input:hidden[name="token"]').val(result.token);
-                            removeClassIsInvalid('#email');
-                            addClassIsValid("#email");
-                            $("#invalid-email").html(""); 
-                        
-                        } else { 
-                            $('input:hidden[name="token"]').val(result.token);
-                            addClassIsInvalid("#email");
-                            $("#invalid-email").html(emailError); 
-
-                        }
-
-                        //position
-                        if(positionError == "") { 
-                            $('input:hidden[name="token"]').val(result.token);
-                            removeClassIsInvalid("#position");
-                            addClassIsValid("#position");
-                            $("#invalid-pos").html(""); 
-
-                        } else { 
-                            $('input:hidden[name="token"]').val(result.token);
-                            addClassIsInvalid("#position");
-                            $("#invalid-pos").html(positionError); 
-
-                        } 
-                    }
-                }
-
-            })
-          e.preventDefault();
-        })
-    })
-
-</script>
