@@ -1,5 +1,5 @@
 /* 
-	I did this for D.R.Y
+	Notification Function
 */
 
 function notification(message,type,placement_from,placement_align) 

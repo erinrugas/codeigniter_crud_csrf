@@ -1,3 +1,10 @@
+/* 
+    Ajax for Update 
+
+    You can improve this code
+
+*/
+
 $(document).ready(function() {
     $(document).on('click','.edit-data',function() {
         var id = $(this).data('id');

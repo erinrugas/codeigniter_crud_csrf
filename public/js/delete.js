@@ -1,3 +1,10 @@
+/* 
+    Ajax for Delete
+    
+    You can improve this code
+
+*/
+
 $(document).ready(function() {
     $.ajaxSetup({data: {token: CFG.token}});
     

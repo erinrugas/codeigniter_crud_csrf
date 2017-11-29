@@ -11,7 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<script type="text/javascript" src="public/jquery/dist/jquery.min.js"></script>
   <link rel="stylesheet" type="text/css" href="public/bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="public/datatables/jquery.dataTables.min.css">
-
+  <link rel="stylesheet" type="text/css" href="public/font-awesome/css/font-awesome.min.css">
   <script src="public/datatables/jquery.dataTables.min.js" type="text/javascript"></script>
   <script>
       var base_url = window.location.origin+"/ci_code_template/";

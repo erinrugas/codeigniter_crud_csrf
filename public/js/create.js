@@ -1,3 +1,10 @@
+/* 
+    Ajax for Create 
+
+    You can improve this code
+
+*/
+
 $(document).ready(function() {
     $(document).on('submit','#add-info-form',function(e) {
         $.ajax({

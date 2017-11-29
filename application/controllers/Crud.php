@@ -5,19 +5,18 @@ class Crud extends MY_Controller {
 
 	public function index()
 	{
-		/* MY_Controller function mainPage */
-		
+
 		parent::mainPage('crud/index',[
 			'title'	=> 'Crud, AJax'
 		]);
+
 	}
 
 
 	/* Store Data */
 	public function store() 
 	{
-		// print_r($this->security->get_csrf_hash());die;
-
+		
 		if($this->form_validation->run('add_validate') == FALSE) {
 
 			$error = [
@@ -32,8 +31,8 @@ class Crud extends MY_Controller {
 			/* clean_data is for strip_tags */
 			$insertData = [
 				
-				'name'	=>  clean_data($this->input->post('name')),
-				'position' => clean_data($this->input->post('position')),
+				'name'	=>  ucwords(clean_data($this->input->post('name'))),
+				'position' => ucwords(clean_data($this->input->post('position'))),
 				'email' =>  clean_data($this->input->post('email')),
 			];
 			
@@ -46,10 +45,14 @@ class Crud extends MY_Controller {
 			$this->Crud_model->insert('users',$insertData);
 			echo json_encode($success);
 		}
+
 	}
+
+	/* Show Data */
 
 	public function show()
 	{
+
 		$order_by = "created_at desc";
 		$usersData = $this->Crud_model->fetch('users','','','',$order_by);
 		$data['data']['data'] = array();
@@ -62,28 +65,31 @@ class Crud extends MY_Controller {
 				$data['data']['data'][$id][] = $userData->name;
 				$data['data']['data'][$id][] = $userData->position;
 				$data['data']['data'][$id][] = $userData->email;
-				$data['data']['data'][$id][] = "<button class='btn btn-secondary edit-data',
-												data-token='$token'
-												data-id='$userData->id'
-												data-name='$userData->name' 
-												data-position='$userData->position'
-												data-email='$userData->email' > Edit </button>
-												<button class='btn btn-danger delete-data',
-												data-toggle='modal'
-												data-token='$token'
-												data-id='$userData->id'
-												data-name='$userData->name' 
-												data-position='$userData->position'
-												data-email='$userData->email' > Delete </button>";
-
+				$data['data']['data'][$id][] = 
+					"<button class='btn btn-secondary edit-data',
+						data-token='$token' data-id='$userData->id'
+						data-name='$userData->name' data-position='$userData->position'
+						data-email='$userData->email' title='Edit'> 
+						<i class='fa fa-pencil'></i> 
+					</button>
+					<button class='btn btn-danger delete-data',
+						data-toggle='modal' data-token='$token'
+						data-id='$userData->id' data-name='$userData->name' 
+						data-position='$userData->position' data-email='$userData->email' 
+						title='Delete'> 
+						<i class='fa fa-trash'></i> 
+					</button>";
 				$id++;
 				$row++;
 			}
 		}
+		
 		echo json_encode($data['data']);
 
 	}
 
+
+	/* Update Data */
 	public function update()
 	{
 		if($this->form_validation->run('update_validate') == FALSE) {
@@ -99,8 +105,8 @@ class Crud extends MY_Controller {
 		} else {		
 			/* clean_data go to helper/custom_helper.php */
 			$updateData = [
-				'name'	=>  clean_data($this->input->post('name')),
-				'position' => clean_data($this->input->post('position')),
+				'name'	=>  ucwords(clean_data($this->input->post('name'))),
+				'position' => ucwords(clean_data($this->input->post('position'))),
 				'email' =>  clean_data($this->input->post('email')),
 			];
 			$success = [
@@ -123,6 +129,5 @@ class Crud extends MY_Controller {
 				'message'	=> 'success'
 			];
 		echo json_encode($success);
-
 	}
 }
