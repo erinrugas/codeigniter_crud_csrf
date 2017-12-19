@@ -36,9 +36,9 @@ Configurations
 
 3. Create a model for CRUD, you will just need to pass value through parameters in the controller.
 	e.g. 
-		$this->Crud_model->insert('tableName',$yourDataToBeInserted); - Insert into tableName
-		$this->Crud_model->fetch('tableName'); - select * from tableName
-		$this->Crud_model->fetchTagRow('specificColumn','tableName'); select specificColumn from tableName
+	$this->Crud_model->insert('tableName',$yourDataToBeInserted); - Insert into tableName
+	$this->Crud_model->fetch('tableName'); - select * from tableName
+	$this->Crud_model->fetchTagRow('specificColumn','tableName'); select specificColumn from tableName
 
 4. Custom helper in application/helpers/custom_helper - this helper use for strip_tags and striplashes
 
