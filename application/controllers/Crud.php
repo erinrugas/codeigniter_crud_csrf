@@ -12,7 +12,6 @@ class Crud extends MY_Controller {
 
 	}
 
-
 	/* Store Data */
 	public function store() 
 	{
@@ -49,7 +48,6 @@ class Crud extends MY_Controller {
 	}
 
 	/* Show Data */
-
 	public function show()
 	{
 
@@ -66,19 +64,24 @@ class Crud extends MY_Controller {
 				$data['data']['data'][$id][] = $userData->position;
 				$data['data']['data'][$id][] = $userData->email;
 				$data['data']['data'][$id][] = 
-					"<button class='btn btn-secondary edit-data',
-						data-token='$token' data-id='$userData->id'
-						data-name='$userData->name' data-position='$userData->position'
-						data-email='$userData->email' title='Edit'> 
-						<i class='fa fa-pencil'></i> 
-					</button>
-					<button class='btn btn-danger delete-data',
-						data-toggle='modal' data-token='$token'
-						data-id='$userData->id' data-name='$userData->name' 
-						data-position='$userData->position' data-email='$userData->email' 
-						title='Delete'> 
-						<i class='fa fa-trash'></i> 
-					</button>";
+
+					'<div class="dropdown">
+					  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					    Action
+					  </button>
+					  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+					    <a class="dropdown-item edit-data" 
+					    data-token="'.$token.'" data-id="'.$userData->id.'"
+						data-name="'.$userData->name.'" data-position="'.$userData->position.'"
+						data-email="'.$userData->email.'" title="Edit" >Edit</a>
+					    <a class="dropdown-item delete-data" 
+					    data-toggle="modal" data-token="'.$token.'" data-id="'.$userData->id.'"
+						data-name="'.$userData->name.'" data-position="'.$userData->position.'"
+						data-email="'.$userData->email.'" 
+						title="Delete">Delete</a>
+					  </div>
+					</div>';
+
 				$id++;
 				$row++;
 			}
@@ -87,7 +90,6 @@ class Crud extends MY_Controller {
 		echo json_encode($data['data']);
 
 	}
-
 
 	/* Update Data */
 	public function update()
@@ -120,6 +122,7 @@ class Crud extends MY_Controller {
 		}
 	}
 
+	/* Delete Data */
 	public function delete()
 	{
 		$where = ['id' => $this->input->post('deleteid')];

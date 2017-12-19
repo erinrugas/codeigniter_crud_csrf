@@ -5,9 +5,8 @@
 
 */
 
-$(document).ready(function() {
-    $.ajaxSetup({data: {token: CFG.token}});
-    
+$(function() {
+
     $(document).on('click','.delete-data',function() {
         var id = $(this).data('id');
         var name = $(this).data('name');

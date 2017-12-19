@@ -39,6 +39,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           padding-top: 56px;
         }
       }
+      .dropdown-menu {
+        cursor: pointer;
+      }
 
     </style>
 </head>

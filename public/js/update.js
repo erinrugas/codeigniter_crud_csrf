@@ -5,7 +5,8 @@
 
 */
 
-$(document).ready(function() {
+$(function() {
+
     $(document).on('click','.edit-data',function() {
         var id = $(this).data('id');
         var name = $(this).data('name');
@@ -50,15 +51,15 @@ $(document).ready(function() {
                     } else {
 
                         //name
+                        $('input:hidden[name="token"]').val(result.token);
                         if(nameError == "") { 
-                            $('input:hidden[name="token"]').val(result.token);
                         
                             removeClassIsInvalid("#name"); 
                             addClassIsValid("#name");
                             $("#invalid-name").html(""); 
 
                         } else { 
-                            $('input:hidden[name="token"]').val(result.token);
+
                             addClassIsInvalid("#name");
                             $("#invalid-name").html(nameError);
 
@@ -66,13 +67,13 @@ $(document).ready(function() {
 
                         //email
                         if(emailError == "") { 
-                           $('input:hidden[name="token"]').val(result.token);
+
                             removeClassIsInvalid('#email');
                             addClassIsValid("#email");
                             $("#invalid-email").html(""); 
                         
                         } else { 
-                            $('input:hidden[name="token"]').val(result.token);
+
                             addClassIsInvalid("#email");
                             $("#invalid-email").html(emailError); 
 
@@ -80,13 +81,13 @@ $(document).ready(function() {
 
                         //position
                         if(positionError == "") { 
-                            $('input:hidden[name="token"]').val(result.token);
+
                             removeClassIsInvalid("#position");
                             addClassIsValid("#position");
                             $("#invalid-pos").html(""); 
 
                         } else { 
-                            $('input:hidden[name="token"]').val(result.token);
+                            
                             addClassIsInvalid("#position");
                             $("#invalid-pos").html(positionError); 
 
